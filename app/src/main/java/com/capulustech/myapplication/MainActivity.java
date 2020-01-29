@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.content.Intent;
-import android.opengl.ETC1;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -33,7 +32,7 @@ public class MainActivity extends AppCompatActivity
             {
 //                String name =nameEt.getText().toString();
 //                titleTv.setText(name);
-                Intent intent=new Intent(MainActivity.this,StudentRegistration.class);
+                Intent intent=new Intent(MainActivity.this, StudentRegistrationActivity.class);
                 startActivity(intent);
 
 

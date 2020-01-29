@@ -10,46 +10,49 @@ import android.widget.EditText;
 
 import java.io.Serializable;
 
-public class StudentRegistration extends AppCompatActivity
+public class StudentRegistrationActivity extends AppCompatActivity
 {
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_registration);
-        final EditText nameEt = findViewById(R.id.nameET);
-        final EditText usnEt = findViewById(R.id.usnET);
-        final EditText branchEt = findViewById(R.id.branchET);
-        final EditText sectionEt = findViewById(R.id.sectionET);
-        final EditText mobileNumberEt = findViewById(R.id.phoneET);
-        Button registerBtn = findViewById(R.id.submitBtn);
+
+        final EditText nameET = findViewById(R.id.nameET);
+        final EditText usnET = findViewById(R.id.usnET);
+        final EditText branchET = findViewById(R.id.branchET);
+        final EditText sectionET = findViewById(R.id.sectionET);
+        final EditText mobileNumberET = findViewById(R.id.mobileET);
+
+        Button registerBtn = findViewById(R.id.registerBtn);
+
         registerBtn.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                String name = nameEt.getText().toString();
-                String branch = branchEt.getText().toString();
-                String usn = usnEt.getText().toString();
-                String mobilenumber = mobileNumberEt.getText().toString();
-                String section = sectionEt.getText().toString();
+                String name = nameET.getText().toString();
+                String branch = branchET.getText().toString();
+                String usn = usnET.getText().toString();
+                String mobileNumber = mobileNumberET.getText().toString();
+                String section = sectionET.getText().toString();
 
                 Student student = new Student();
                 student.name = name;
                 student.branch = branch;
                 student.usn = usn;
-                student.mobileNumber = mobilenumber;
+                student.mobileNumber = mobileNumber;
                 student.section = section;
 
 
+                /*
                 Intent intent = new Intent();
                 intent.putExtra("student", student);
                 startActivity(intent);
+                */
 
                 //in StudentDetailsActivity
-                Student student1 = (Student) getIntent().getSerializableExtra("student");
+                //Student student1 = (Student) getIntent().getSerializableExtra("student");
 
 
             }

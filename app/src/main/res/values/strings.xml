@@ -1,7 +1,8 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Internship</string>
     <string name="student_name_label">Student Name</string>
-    <string name="enter_your_name">Enter your name</string>
-
+    <string name="ait_android_internship">AIT Android Internship</string>
+    <string name="usernamehint">Enter Username</string>
+    <string name="passwordhint">Enter Password</string>
 
 </resources>
