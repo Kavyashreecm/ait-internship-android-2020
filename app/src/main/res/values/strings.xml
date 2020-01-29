@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="student_name_label">Student Name</string>
+    <string name="enter_your_name">Enter your name</string>
+
+
+</resources>
