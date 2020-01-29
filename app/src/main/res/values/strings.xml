@@ -5,4 +5,9 @@
     <string name="usernamehint">Enter Username</string>
     <string name="passwordhint">Enter Password</string>
 
+    <string-array name="section">
+        <item>A</item>
+        <item>B</item>
+    </string-array>
+
 </resources>
