@@ -1,0 +1,122 @@
+//------- 30 Jan 2020
+
+added colors to colors.xml
+updated the UI design of login page and student reg page
+login page as launcher activity
+Toast
+
+
+1. Change the Section and Branch to Spinner
+2. ImageView
+3. Add Location Code to the project and Get the Location of the User
+4. Add Camera Feature to the project and get the photo of the User
+
+
+
+Spinner for Section, Branch
+
+//for Location and Maps
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+
+//files FusedLocation, MyLocListener
+
+//Android Manifest Permission
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+//to ask permissions
+implementation 'com.karumi:dexter:6.0.2'
+
+Dexter.withActivity(StudentRegistrationActivity.this)
+                .withPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+                .withListener(new PermissionListener()
+                {
+                    @Override
+                    public void onPermissionGranted(PermissionGrantedResponse response)
+                    {
+                        FusedLocation fusedLocation =
+                                new FusedLocation(StudentRegistrationActivity.this,
+                                        false);
+                        fusedLocation.onLocReceived(new MyLocListener()
+                        {
+                            @Override
+                            public void onLocReceived(LatLng latLng)
+                            {
+                                Toast.makeText(StudentRegistrationActivity.this,
+                                        "" + latLng.latitude, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onPermissionDenied(PermissionDeniedResponse response)
+                    {
+
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(PermissionRequest permission,
+                                                                   PermissionToken token)
+                    {
+
+                    }
+                })
+                .check();
+
+
+
+
+Uri uri = Uri.parse("geo:latitude,longitude");
+Intent mapIntent = Intent(Intent.ACTION_VIEW, uri);
+mapIntent.setPackage("com.google.android.apps.maps");
+startActivity(mapIntent);
+
+
+
+//camera
+
+manifest permission
+runtime permission
+
+        Dexter.withActivity(StudentRegistrationActivity.this)
+                .withPermission(Manifest.permission.CAMERA)
+                .withListener(new PermissionListener()
+                {
+                    @Override
+                    public void onPermissionGranted(PermissionGrantedResponse response)
+                    {
+                        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+                        startActivityForResult(intent, 6789);
+                    }
+
+                    @Override
+                    public void onPermissionDenied(PermissionDeniedResponse response)
+                    {
+
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(PermissionRequest permission,
+                                                                   PermissionToken token)
+                    {
+
+                    }
+                })
+                .check();
+
+Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+startActivityForResult(intent, 6789);
+
+
+@Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 6789 && resultCode == RESULT_OK)
+        {
+            Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+            ImageView iv = findViewById(R.id.ivRegLogo);
+            iv.setImageBitmap(bitmap);
+        }
+    }
