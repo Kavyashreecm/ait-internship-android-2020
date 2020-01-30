@@ -57,7 +57,8 @@ public class StudentRegistrationActivity extends AppCompatActivity
                             public void onLocReceived(LatLng latLng)
                             {
                                 Toast.makeText(StudentRegistrationActivity.this,
-                                        "" + latLng.latitude, Toast.LENGTH_SHORT).show();
+                                        "Location : " + latLng.latitude + "," + latLng.longitude,
+                                        Toast.LENGTH_LONG).show();
                             }
                         });
                     }

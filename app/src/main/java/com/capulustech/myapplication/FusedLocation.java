@@ -208,7 +208,6 @@ public class FusedLocation implements ConnectionCallbacks, OnConnectionFailedLis
 		mLocationRequest.setFastestInterval(FASTEST_INTERVAL);
 		mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 		mLocationRequest.setSmallestDisplacement(DISPLACEMENT); // 10 meters
-
 		if (ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
 		{
 			LocationServices.getFusedLocationProviderClient(context)
