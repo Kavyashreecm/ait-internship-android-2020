@@ -6,6 +6,7 @@
     <string name="passwordhint">Enter Password</string>
 
     <string-array name="section">
+        <item>Select Section</item>
         <item>A</item>
         <item>B</item>
         <item>C</item>
@@ -13,6 +14,7 @@
     </string-array>
 
     <string-array name="branch">
+        <item>Select Branch</item>
         <item>CSE</item>
         <item>Mech</item>
         <item>EC</item>

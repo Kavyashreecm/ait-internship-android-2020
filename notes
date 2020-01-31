@@ -1,4 +1,15 @@
-//------- 30 Jan 2020
+// ------ 29 Jan 2020 ----------------
+
+----- Task -----
+Intent intent = new Intent();
+intent.putExtra("student", student);
+startActivity(intent);
+
+//in StudentDetailsActivity
+//Student student1 = (Student) getIntent().getSerializableExtra("student");
+
+
+//------- 30 Jan 2020 ------------
 
 added colors to colors.xml
 updated the UI design of login page and student reg page
@@ -65,19 +76,48 @@ Dexter.withActivity(StudentRegistrationActivity.this)
                 .check();
 
 
+===================== 31-Jan-2020 ===========================
 
+1. Add Text View for location and clickListener
 
-Uri uri = Uri.parse("geo:latitude,longitude");
-Intent mapIntent = Intent(Intent.ACTION_VIEW, uri);
+2. External Intent / Internal Intent
+
+3. ========== Google Maps Intent ================
+
+Uri uri = Uri.parse("http://maps.google.com/maps?q=" + latLng.latitude + "," + latLng.longitude);
+Intent mapIntent = new Intent(Intent.ACTION_VIEW, uri);
 mapIntent.setPackage("com.google.android.apps.maps");
 startActivity(mapIntent);
 
+========== Google Maps Intent ================
+
+4. Share Button above Register Button
+
+========== Share Intent ================
+
+String message = "Name: " + student.name + "\n"
+                 + "USN: " + student.usn + "\n"
+                 + "Branch: " + student.branch + "\n"
+                 + "Section: " + student.section + "\n"
+                 + "Mobile Number: " + student.mobileNumber + "\n"
+                 + "This is my Location: \n" + "http://maps.google.com/maps?q="
+                 + latLng.latitude + "," + latLng.longitude);
+
+Intent sendIntent = new Intent();
+sendIntent.setAction(Intent.ACTION_SEND);
+sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my Location.\n" + "http://maps.google.com/maps?q=" + latLng.latitude + "," + latLng.longitude);
+sendIntent.setType("text/plain");
+startActivity(sendIntent);
+
+========== Share Intent ================
 
 
-//camera
+5. ========== Camera ================
 
 manifest permission
 runtime permission
+
+ClickListener for Photo IV
 
         Dexter.withActivity(StudentRegistrationActivity.this)
                 .withPermission(Manifest.permission.CAMERA)
@@ -120,3 +160,105 @@ startActivityForResult(intent, 6789);
             iv.setImageBitmap(bitmap);
         }
     }
+
+========== Camera ================
+
+========== Video ============
+
+<VideoView
+    android:id="@+id/videoView"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    android:layout_marginTop="30dp" />
+
+
+Intent videoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+                                videoIntent.putExtra("android.intent.extras.CAMERA_FACING", 1);
+                                startActivityForResult(videoIntent, 1111);
+
+
+if (requestCode == 1111 && resultCode == RESULT_OK)
+        {
+            Uri videoUri = data.getData();
+            VideoView videoView = findViewById(R.id.videoView);
+            videoView.setVideoURI(videoUri);
+            videoView.start();
+        }
+
+========== Video ============
+
+
+======== Local Storage ===============
+
+SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.app_name),
+               Context.MODE_PRIVATE);
+SharedPreferences.Editor editor = sharedPreferences.edit();
+editor.putString("name", "value");
+editor.commit();
+String value = sharedPreferences.getString("name", "");
+
+======== Local Storage ===============
+
+======== Text to Speech ==============
+
+String message = "Hello, my name is " + student.name + "."
+        + "My USN is " + student.usn + "."
+        + "I am from " + student.branch + " branch," + student.section + " section";
+
+
+TextToSpeech textToSpeech;
+public void speak(final String message)
+    {
+        textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener()
+        {
+            @Override
+            public void onInit(int status)
+            {
+                if (status != TextToSpeech.ERROR)
+                {
+                    textToSpeech.setLanguage(Locale.UK);
+                    textToSpeech.speak(message, TextToSpeech.QUEUE_FLUSH, null, null);
+                }
+            }
+        });
+
+    }
+
+======== Text to Speech ==============
+
+
+======== Media Player ============
+
+MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.music);
+mediaPlayer.start();
+
+======== Media Player ============
+
+
+============ Animation ===========
+
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <alpha
+        android:fromAlpha="0"
+        android:toAlpha="1"
+        android:duration="3000"/>
+
+    <scale
+        android:duration="2000"
+        android:fromXScale="0.5"
+        android:fromYScale="0.5"
+        android:toXScale="1.0"
+        android:toYScale="1.0" />
+
+    <rotate
+        android:duration="2000"
+        android:fromDegrees="0"
+        android:startOffset="2000"
+        android:toDegrees="360" />
+</set>
+
+Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale);
+photoIV.startAnimation(animation);
+
+============ Animation ===========

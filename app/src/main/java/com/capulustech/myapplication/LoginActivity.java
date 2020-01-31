@@ -45,8 +45,23 @@ public class LoginActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                Toast.makeText(LoginActivity.this, "Yet to be Implemented",
-                        Toast.LENGTH_LONG).show();
+                /*Toast.makeText(LoginActivity.this, "Yet to be Implemented",
+                        Toast.LENGTH_LONG).show();*/
+
+                String username = usernameET.getText().toString();
+                String password = passwordET.getText().toString();
+
+                if(username.equalsIgnoreCase("android")
+                        && password.equalsIgnoreCase("internship"))
+                {
+                    Toast.makeText(LoginActivity.this, "Login Successful",
+                            Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    Toast.makeText(LoginActivity.this, "Login Failed",
+                            Toast.LENGTH_LONG).show();
+                }
             }
         });
     }

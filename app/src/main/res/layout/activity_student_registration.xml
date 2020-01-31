@@ -71,23 +71,22 @@
                 android:id="@+id/branchSpn"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/rounded_rect"
                 android:entries="@array/branch"
                 android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:layout_marginBottom="10dp"/>
-
+                android:paddingEnd="10dp" />
 
 
             <Spinner
                 android:id="@+id/sectionSpn"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/rounded_rect"
                 android:entries="@array/section"
                 android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:layout_marginBottom="10dp"/>
+                android:paddingEnd="10dp" />
 
 
             <EditText
@@ -106,15 +105,55 @@
                 android:textColorHint="@color/md_white_1000"
                 android:textSize="15sp" />
 
-
-            <Button
-                android:id="@+id/registerBtn"
+            <TextView
+                android:id="@+id/locationTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="20dp"
+                android:text=""
+                android:textColor="@color/md_white_1000"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <Button
+                android:id="@+id/shareBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
                 android:background="@color/md_blue_800"
-                android:text="Register"
+                android:text="Share"
+                android:layout_weight="1"
                 android:textColor="#FFFFFF" />
+
+                <Button
+                    android:id="@+id/registerBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:background="@color/md_blue_800"
+                    android:text="Register"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:textColor="#FFFFFF" />
+
+                <Button
+                    android:id="@+id/speakBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:background="@color/md_blue_800"
+                    android:text="Register"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:textColor="#FFFFFF" />
+
+            </LinearLayout>
+
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
