@@ -11,69 +11,135 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:alpha="0.5"
-        app:cardBackgroundColor="@color/black"
+        app:cardBackgroundColor="@color/md_blue_700"
         app:cardCornerRadius="5dp">
 
-        <LinearLayout
+        <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="5dp">
+            android:padding="10dp">
 
-
-            <TextView
-                android:id="@+id/studentNameTV"
+            <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:alpha="1"
-                android:textColor="@color/md_white_1000"
-                android:textSize="18sp"
-                tools:text="Nithin Kamath" />
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/usnTV"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:alpha="1"
+                    android:text="Name "
+                    android:textColor="@color/md_white_1000"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/studentNameTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:alpha="1"
+                    android:textColor="@color/md_white_1000"
+                    android:textSize="18sp"
+                    tools:text="Nithin Kamath" />
+
+            </TableRow>
+
+            <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:alpha="1"
-                android:textColor="@color/md_white_1000"
-                android:textSize="18sp"
-                tools:text="4AI10CS064" />
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/branchTV"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:alpha="1"
+                    android:text="USN "
+                    android:textColor="@color/md_white_1000"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/usnTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:alpha="1"
+                    android:textColor="@color/md_white_1000"
+                    android:textSize="18sp"
+                    tools:text="4AI10CS064" />
+            </TableRow>
+
+            <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:alpha="1"
-                android:textColor="@color/md_white_1000"
-                android:textSize="18sp"
-                tools:text="CSE" />
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/sectionTV"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:alpha="1"
+                    android:text="Branch "
+                    android:textColor="@color/md_white_1000"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/branchTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:alpha="1"
+                    android:textColor="@color/md_white_1000"
+                    android:textSize="18sp"
+                    tools:text="CSE" />
+            </TableRow>
+
+            <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:alpha="1"
-                android:textColor="@color/md_white_1000"
-                android:textSize="18sp"
-                tools:text="A Section" />
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/mobileTV"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:alpha="1"
+                    android:text="Section "
+                    android:textColor="@color/md_white_1000"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/sectionTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:alpha="1"
+                    android:textColor="@color/md_white_1000"
+                    android:textSize="18sp"
+                    tools:text="A" />
+            </TableRow>
+
+            <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:alpha="1"
-                android:textColor="@color/md_white_1000"
-                android:textSize="18sp"
-                tools:text="8123307900" />
+                android:layout_height="wrap_content">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:alpha="1"
+                    android:text="Mobile "
+                    android:textColor="@color/md_white_1000"
+                    android:textSize="18sp" />
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/mobileTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:alpha="1"
+                    android:textColor="@color/md_white_1000"
+                    android:textSize="18sp"
+                    tools:text="8123307900" />
+            </TableRow>
+        </TableLayout>
     </androidx.cardview.widget.CardView>
 
 </LinearLayout>

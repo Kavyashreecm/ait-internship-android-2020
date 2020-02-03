@@ -437,11 +437,4 @@ public class StudentRegistrationActivity extends AppCompatActivity
         DatePickerFragment dateFragment = new DatePickerFragment();
         dateFragment.show(getSupportFragmentManager(), "datePicker");
     }
-
-    @Override
-    protected void onDestroy()
-    {
-        super.onDestroy();
-        Toast.makeText(this, "on Destroy", Toast.LENGTH_SHORT).show();
-    }
 }

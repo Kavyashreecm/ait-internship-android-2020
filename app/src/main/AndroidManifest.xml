@@ -17,9 +17,13 @@
             android:name=".StudentRegistrationActivity"
             android:label="Student Registration" />
 
-        <activity android:name=".StudentListActivity" />
+        <activity
+            android:name=".StudentListActivity"
+            android:label="Students List" />
 
-        <activity android:name=".LoginActivity">
+        <activity
+            android:name=".LoginActivity"
+            android:label="Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />

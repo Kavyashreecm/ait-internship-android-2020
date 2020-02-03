@@ -35,29 +35,22 @@ public class LoginActivity extends AppCompatActivity
                 String username = usernameET.getText().toString();
                 String password = passwordET.getText().toString();
 
-                if (username.equalsIgnoreCase("admin")
+                /*if (username.equalsIgnoreCase("admin")
                         && password.equalsIgnoreCase("admin"))
-                {
+                {*/
                     Toast.makeText(LoginActivity.this, "Login Successful",
                             Toast.LENGTH_LONG).show();
 
                     Intent intent = new Intent(LoginActivity.this,
                             StudentListActivity.class);
                     startActivity(intent);
-                }
+                /*}
                 else
                 {
                     Toast.makeText(LoginActivity.this, "Login Failed",
                             Toast.LENGTH_LONG).show();
-                }
+                }*/
             }
         });
-    }
-
-    @Override
-    protected void onResume()
-    {
-        super.onResume();
-        Toast.makeText(this, "on resume", Toast.LENGTH_SHORT).show();
     }
 }
