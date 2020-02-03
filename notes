@@ -163,41 +163,6 @@ startActivityForResult(intent, 6789);
 
 ========== Camera ================
 
-========== Video ============
-
-<VideoView
-    android:id="@+id/videoView"
-    android:layout_width="match_parent"
-    android:layout_height="300dp"
-    android:layout_marginTop="30dp" />
-
-
-Intent videoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-                                videoIntent.putExtra("android.intent.extras.CAMERA_FACING", 1);
-                                startActivityForResult(videoIntent, 1111);
-
-
-if (requestCode == 1111 && resultCode == RESULT_OK)
-        {
-            Uri videoUri = data.getData();
-            VideoView videoView = findViewById(R.id.videoView);
-            videoView.setVideoURI(videoUri);
-            videoView.start();
-        }
-
-========== Video ============
-
-
-======== Local Storage ===============
-
-SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.app_name),
-               Context.MODE_PRIVATE);
-SharedPreferences.Editor editor = sharedPreferences.edit();
-editor.putString("name", "value");
-editor.commit();
-String value = sharedPreferences.getString("name", "");
-
-======== Local Storage ===============
 
 ======== Text to Speech ==============
 
@@ -227,9 +192,55 @@ public void speak(final String message)
 ======== Text to Speech ==============
 
 
+
+========== Video ============
+
+<VideoView
+    android:id="@+id/videoView"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    android:layout_marginTop="30dp" />
+
+
+Intent videoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+                                videoIntent.putExtra("android.intent.extras.CAMERA_FACING", 1);
+                                startActivityForResult(videoIntent, 1111);
+
+
+if (requestCode == 1111 && resultCode == RESULT_OK)
+        {
+            Uri videoUri = data.getData();
+            VideoView videoView = findViewById(R.id.videoView);
+            videoView.setVideoURI(videoUri);
+            videoView.start();
+        }
+
+========== Video ============
+
+
+03-Feb-2020
+-----------------------------
+
+
+======== Local Storage ===============
+
+SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.app_name),
+               Context.MODE_PRIVATE);
+SharedPreferences.Editor editor = sharedPreferences.edit();
+editor.putString("name", "value");
+editor.commit();
+
+
+String value = sharedPreferences.getString("name", "");
+
+======== Local Storage ===============
+
+
+
+
 ======== Media Player ============
 
-MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.music);
+MediaPlayer mediaPlayer = MediaPlayer.create(StudentRegistrationActivity.this, R.raw.music);
 mediaPlayer.start();
 
 ======== Media Player ============
@@ -262,3 +273,45 @@ Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.an
 photoIV.startAnimation(animation);
 
 ============ Animation ===========
+
+============ Menu ==============
+no Actionbar to dark actionbar in styles.xml
+Create Menu xml from new menu
+add items give id
+onCreateOptionsMenu
+onOptionsItemSelected
+menu icon , show as action always
+============ Menu ==============
+
+============ Alert Dialog =========
+AlertDialog.builder
+positive, negative button
+menu show alert
+============
+
+===== Date Picker ========
+New Fragment extends DialogFragment implements DatePickerDialog.ondatesetlistener
+month zero based
+
+in activity
+create new fragment and call show with getSupportFragmentManager(), tag
+=============
+onDestroy()
+
+time picker -- try
+
+==== Activity Life Cycle ===
+onResume()
+
+
+========= Recycler View ===========
+Create New Activity StudentListActivity
+Xml RecyclerView
+StudentListAdapter
+
+
+
+
+
+
+

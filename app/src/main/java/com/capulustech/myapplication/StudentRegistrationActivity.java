@@ -1,11 +1,14 @@
 package com.capulustech.myapplication;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GestureDetectorCompat;
+import androidx.fragment.app.DialogFragment;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -15,6 +18,8 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.speech.tts.TextToSpeech;
 import android.view.GestureDetector;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
@@ -60,7 +65,31 @@ public class StudentRegistrationActivity extends AppCompatActivity
         Button registerBtn = findViewById(R.id.registerBtn);
         final Button shareBtn = findViewById(R.id.shareBtn);
         final Button speakBtn = findViewById(R.id.speakBtn);
+        final Button videoBtn = findViewById(R.id.captureVideoBtn);
         final ImageView profileIV = findViewById(R.id.ivRegLogo);
+
+
+
+        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.demo);
+        profileIV.startAnimation(animation);
+        shareBtn.startAnimation(animation);
+        speakBtn.startAnimation(animation);
+        videoBtn.startAnimation(animation);
+        registerBtn.startAnimation(animation);
+
+
+
+
+        videoBtn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent videoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+                videoIntent.putExtra("android.intent.extras.CAMERA_FACING", 1);
+                startActivityForResult(videoIntent, 1111);
+            }
+        });
 
         speakBtn.setOnClickListener(new View.OnClickListener()
         {
@@ -88,7 +117,6 @@ public class StudentRegistrationActivity extends AppCompatActivity
                         + "Mobile Number: " + student.mobileNumber;
 
                 speak(message);
-
 
 
             }
@@ -148,10 +176,8 @@ public class StudentRegistrationActivity extends AppCompatActivity
                 student.section = section;
 
 
-
             }
         });
-
 
 
         Dexter.withActivity(StudentRegistrationActivity.this)
@@ -174,8 +200,6 @@ public class StudentRegistrationActivity extends AppCompatActivity
                                         Toast.LENGTH_LONG).show();*/
 
                                 locationTV.setText("Location : " + latLng.latitude + "," + latLng.longitude);
-
-
 
 
                                 locationTV.setOnClickListener(new View.OnClickListener()
@@ -226,12 +250,8 @@ public class StudentRegistrationActivity extends AppCompatActivity
                                         sendIntent.putExtra(Intent.EXTRA_TEXT, message);
                                         sendIntent.setType("text/plain");
                                         startActivity(sendIntent);
-
-
                                     }
                                 });
-
-
                             }
                         });
                     }
@@ -250,8 +270,6 @@ public class StudentRegistrationActivity extends AppCompatActivity
                     }
                 })
                 .check();
-
-
 
 
         final ImageView photoIV = findViewById(R.id.ivRegLogo);
@@ -301,6 +319,14 @@ public class StudentRegistrationActivity extends AppCompatActivity
             ImageView iv = findViewById(R.id.ivRegLogo);
             iv.setImageBitmap(bitmap);
         }
+
+        if (requestCode == 1111 && resultCode == RESULT_OK)
+        {
+            Uri videoUri = data.getData();
+            VideoView videoView = findViewById(R.id.videoView);
+            videoView.setVideoURI(videoUri);
+            videoView.start();
+        }
     }
 
     public void speak(final String message)
@@ -322,5 +348,98 @@ public class StudentRegistrationActivity extends AppCompatActivity
             }
         });
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        // This comment suppresses the Android Studio warning about simplifying
+        // the return statements.
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.settings)
+        {
+            Toast.makeText(this, "Settings Clicked", Toast.LENGTH_LONG).show();
+            return true;
+        }
+
+//        if (id == R.id.alert)
+//        {
+//            showAlertDialog();
+//            return true;
+//        }
+//
+//        if (id == R.id.datePicker)
+//        {
+//            showDatePicker();
+//            return true;
+//        }
+        if (id == R.id.studentList)
+        {
+            Intent intent = new Intent(this, StudentListActivity.class);
+            startActivity(intent);
+            return true;
+        }
+//
+        if (id == R.id.logout)
+        {
+            Toast.makeText(this, "Logout Clicked", Toast.LENGTH_LONG).show();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    public void showAlertDialog()
+    {
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+        alertBuilder.setTitle("Title");
+        alertBuilder.setMessage("This is a sample Message");
+        alertBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i)
+            {
+                Toast.makeText(StudentRegistrationActivity.this, "OK Clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        alertBuilder.setNegativeButton("No", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i)
+            {
+                Toast.makeText(StudentRegistrationActivity.this, "Cancel Clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        alertBuilder.create().show();
+    }
+
+
+    public void showDatePicker()
+    {
+        DatePickerFragment dateFragment = new DatePickerFragment();
+        dateFragment.show(getSupportFragmentManager(), "datePicker");
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+        Toast.makeText(this, "on Destroy", Toast.LENGTH_SHORT).show();
     }
 }

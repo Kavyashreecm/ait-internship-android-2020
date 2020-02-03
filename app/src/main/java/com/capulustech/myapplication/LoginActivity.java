@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity
                 String username = usernameET.getText().toString();
                 String password = passwordET.getText().toString();
 
-                if(username.equalsIgnoreCase("android")
+                if (username.equalsIgnoreCase("android")
                         && password.equalsIgnoreCase("internship"))
                 {
                     Toast.makeText(LoginActivity.this, "Login Successful",
@@ -64,5 +64,12 @@ public class LoginActivity extends AppCompatActivity
                 }
             }
         });
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        Toast.makeText(this, "on resume", Toast.LENGTH_SHORT).show();
     }
 }

@@ -3,7 +3,7 @@
     package="com.capulustech.myapplication">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -14,6 +14,7 @@
         android:theme="@style/AppTheme">
 
         <activity android:name=".StudentRegistrationActivity" />
+        <activity android:name=".StudentListActivity" />
 
         <activity android:name=".LoginActivity">
             <intent-filter>
