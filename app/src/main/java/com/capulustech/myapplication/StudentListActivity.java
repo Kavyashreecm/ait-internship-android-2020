@@ -38,7 +38,8 @@ import java.util.Locale;
 
 public class StudentListActivity extends AppCompatActivity
 {
-
+    RecyclerView recyclerView;
+    StudentListAdapter studentListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -46,7 +47,22 @@ public class StudentListActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_list);
 
+        ArrayList<String> students = new ArrayList<>();
+        for (int i = 1; i < 50; i++)
+        {
+            students.add("Student " + i);
+        }
 
+//        students.add("Nithin Kamath");
+//        students.add("Arjun KR");
+//        students.add("Arhath");
+//        students.add("Deekshith");
+
+
+        studentListAdapter = new StudentListAdapter(this, students);
+        recyclerView = findViewById(R.id.studentRCV);
+        recyclerView.setAdapter(studentListAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
     }
