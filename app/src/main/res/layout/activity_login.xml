@@ -79,20 +79,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
-                android:background="@color/md_pink_300"
-                android:text="Login" />
-
-            <Button
-                android:id="@+id/signUpBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
                 android:background="@color/md_blue_700"
-                android:hapticFeedbackEnabled="true"
-                android:text="Sign Up" />
+                android:text="Login" />
         </LinearLayout>
 
         <TextView

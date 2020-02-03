@@ -13,7 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".StudentRegistrationActivity" />
+        <activity
+            android:name=".StudentRegistrationActivity"
+            android:label="Student Registration" />
+
         <activity android:name=".StudentListActivity" />
 
         <activity android:name=".LoginActivity">

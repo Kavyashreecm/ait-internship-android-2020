@@ -34,6 +34,7 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class StudentListActivity extends AppCompatActivity
@@ -47,23 +48,35 @@ public class StudentListActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_list);
 
-        ArrayList<String> students = new ArrayList<>();
-        for (int i = 1; i < 50; i++)
-        {
-            students.add("Student " + i);
-        }
+        List<Student> allStudents = Student.getAllStudents(this);
 
-//        students.add("Nithin Kamath");
-//        students.add("Arjun KR");
-//        students.add("Arhath");
-//        students.add("Deekshith");
-
-
-        studentListAdapter = new StudentListAdapter(this, students);
+        studentListAdapter = new StudentListAdapter(this, allStudents);
         recyclerView = findViewById(R.id.studentRCV);
         recyclerView.setAdapter(studentListAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.student_list, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        int id = item.getItemId();
+
+        if (id == R.id.add)
+        {
+            Intent intent = new Intent(StudentListActivity.this,
+                    StudentRegistrationActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

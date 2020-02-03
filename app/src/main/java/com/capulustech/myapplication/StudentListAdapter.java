@@ -12,14 +12,15 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.StudentViewHolder>
 {
     private final LayoutInflater mInflater;
-    ArrayList<String> students;
+    List<Student> students;
     Context context;
 
-    public StudentListAdapter(Context mContext, ArrayList<String> mStudents)
+    public StudentListAdapter(Context mContext, List<Student> mStudents)
     {
         context = mContext;
         mInflater = LayoutInflater.from(context);
@@ -29,13 +30,17 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
 
     class StudentViewHolder extends RecyclerView.ViewHolder
     {
-        TextView studentNameTV;
+        TextView studentNameTV, usnTV, branchTV, sectionTV, mobileTV;
         CardView cardView;
 
         public StudentViewHolder(@NonNull View itemView)
         {
             super(itemView);
             studentNameTV = itemView.findViewById(R.id.studentNameTV);
+            branchTV = itemView.findViewById(R.id.branchTV);
+            sectionTV = itemView.findViewById(R.id.sectionTV);
+            mobileTV = itemView.findViewById(R.id.mobileTV);
+            usnTV = itemView.findViewById(R.id.usnTV);
             cardView = itemView.findViewById(R.id.cardView);
         }
     }
@@ -53,14 +58,19 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
     @Override
     public void onBindViewHolder(@NonNull StudentViewHolder holder, final int position)
     {
-        holder.studentNameTV.setText(students.get(position));
+        final Student student = students.get(position);
+        holder.studentNameTV.setText(student.name);
+        holder.usnTV.setText(student.usn);
+        holder.branchTV.setText(student.branch);
+        holder.sectionTV.setText(student.section);
+        holder.mobileTV.setText(student.mobileNumber);
 
         holder.cardView.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                Toast.makeText(context, students.get(position), Toast.LENGTH_LONG).show();
+                Toast.makeText(context, student.name, Toast.LENGTH_LONG).show();
             }
         });
     }

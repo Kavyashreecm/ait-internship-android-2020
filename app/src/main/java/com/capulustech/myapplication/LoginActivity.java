@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class LoginActivity extends AppCompatActivity
 {
     EditText usernameET, passwordET;
-    Button loginBtn, signUpBtn;
+    Button loginBtn;
     CheckBox rememberMeCB;
 
     @Override
@@ -26,36 +26,24 @@ public class LoginActivity extends AppCompatActivity
         passwordET = findViewById(R.id.passwordET);
         rememberMeCB = findViewById(R.id.rememberMeCB);
         loginBtn = findViewById(R.id.loginBtn);
-        signUpBtn = findViewById(R.id.signUpBtn);
-
-        //SignUp's Button for showing Registration Page
-        signUpBtn.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                Intent intent = new Intent(LoginActivity.this,
-                        StudentRegistrationActivity.class);
-                startActivity(intent);
-            }
-        });
 
         loginBtn.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                /*Toast.makeText(LoginActivity.this, "Yet to be Implemented",
-                        Toast.LENGTH_LONG).show();*/
-
                 String username = usernameET.getText().toString();
                 String password = passwordET.getText().toString();
 
-                if (username.equalsIgnoreCase("android")
-                        && password.equalsIgnoreCase("internship"))
+                if (username.equalsIgnoreCase("admin")
+                        && password.equalsIgnoreCase("admin"))
                 {
                     Toast.makeText(LoginActivity.this, "Login Successful",
                             Toast.LENGTH_LONG).show();
+
+                    Intent intent = new Intent(LoginActivity.this,
+                            StudentListActivity.class);
+                    startActivity(intent);
                 }
                 else
                 {

@@ -69,15 +69,12 @@ public class StudentRegistrationActivity extends AppCompatActivity
         final ImageView profileIV = findViewById(R.id.ivRegLogo);
 
 
-
         Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.demo);
         profileIV.startAnimation(animation);
         shareBtn.startAnimation(animation);
         speakBtn.startAnimation(animation);
         videoBtn.startAnimation(animation);
         registerBtn.startAnimation(animation);
-
-
 
 
         videoBtn.setOnClickListener(new View.OnClickListener()
@@ -174,6 +171,11 @@ public class StudentRegistrationActivity extends AppCompatActivity
                 student.usn = usn;
                 student.mobileNumber = mobileNumber;
                 student.section = section;
+
+                Student.addStudent(StudentRegistrationActivity.this, student);
+
+                Toast.makeText(StudentRegistrationActivity.this,
+                        "Student Added to Database", Toast.LENGTH_SHORT).show();
 
 
             }
