@@ -34,6 +34,10 @@ import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.util.Locale;
 
@@ -45,6 +49,9 @@ import okhttp3.Response;
 
 public class LocationActivity extends AppCompatActivity
 {
+
+    TextView weatherTV;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -52,8 +59,10 @@ public class LocationActivity extends AppCompatActivity
         setContentView(R.layout.activity_location);
 
         final TextView locationTV = findViewById(R.id.locationTV);
+        weatherTV = findViewById(R.id.weatherTV);
         final Button mapBtn = findViewById(R.id.mapBtn);
         final Button locationBtn = findViewById(R.id.locationBtn);
+        final Button weatherBtn = findViewById(R.id.weatherBtn);
 
         locationBtn.setOnClickListener(new View.OnClickListener()
         {
@@ -78,41 +87,14 @@ public class LocationActivity extends AppCompatActivity
 
                                         locationTV.setText("Location : " + latLng.latitude + "," + latLng.longitude);
 
-                                        locationTV.setOnClickListener(new View.OnClickListener()
+                                        weatherBtn.setVisibility(View.VISIBLE);
+
+                                        weatherBtn.setOnClickListener(new View.OnClickListener()
                                         {
                                             @Override
                                             public void onClick(View view)
                                             {
-                                                OkHttpClient client = new OkHttpClient();
-
-                                                Request request = new Request.Builder()
-                                                        .url("http://api.openweathermap.org/data/2.5/weather?lat=" + latLng.latitude +
-                                                                "&lon=" + latLng.longitude +
-                                                                "&units=metric&APPID" +
-                                                                "=5a6bd43795ec1f1e5e9e2362dec72e9c")
-                                                        .build();
-
-                                                client.newCall(request).enqueue(new Callback()
-                                                {
-                                                    @Override
-                                                    public void onFailure(Call call, IOException e)
-                                                    {
-                                                        e.printStackTrace();
-                                                    }
-
-                                                    @Override
-                                                    public void onResponse(Call call, final Response response) throws IOException
-                                                    {
-                                                        if (!response.isSuccessful())
-                                                        {
-                                                            throw new IOException("Unexpected code " + response);
-                                                        }
-                                                        else
-                                                        {
-                                                            Log.d("nk", response.body().string());
-                                                        }
-                                                    }
-                                                });
+                                                getWeatherDetails(latLng);
                                             }
                                         });
 
@@ -149,5 +131,55 @@ public class LocationActivity extends AppCompatActivity
                         .check();
             }
         });
+    }
+
+    public void getWeatherDetails(LatLng latLng)
+    {
+        OkHttpClient client = new OkHttpClient();
+
+        Request request = new Request.Builder()
+                .url("http://api.openweathermap.org/data/2.5/weather?lat=" + latLng.latitude +
+                        "&lon=" + latLng.longitude +
+                        "&units=metric&APPID" +
+                        "=5a6bd43795ec1f1e5e9e2362dec72e9c")
+                .build();
+
+        client.newCall(request).enqueue(new Callback()
+        {
+            @Override
+            public void onFailure(Call call, IOException e)
+            {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, final Response response) throws IOException
+            {
+                if (!response.isSuccessful())
+                {
+                    throw new IOException("Unexpected code " + response);
+                }
+                else
+                {
+                    String responseString = response.body().string();
+                    try
+                    {
+                        JSONObject jsonObject = new JSONObject(responseString);
+                        JSONArray jsonArray = jsonObject.getJSONArray("weather");
+                        String weatherType = jsonArray.getJSONObject(0).getString("description");
+                        String temperature = jsonObject.getJSONObject("main").getString("temp");
+                        String city = jsonObject.getString("name");
+
+                        weatherTV.setText(city + " - " + weatherType.toUpperCase() + " - " + temperature + "C");
+
+                    }
+                    catch (JSONException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
     }
 }

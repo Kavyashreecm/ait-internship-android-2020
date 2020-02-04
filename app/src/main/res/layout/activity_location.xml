@@ -78,6 +78,25 @@
                     android:background="@color/md_blue_800"
                     android:text="Show Location on Map"
                     android:textColor="#FFFFFF" />
+
+                <Button
+                    android:id="@+id/weatherBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:background="@color/md_blue_800"
+                    android:text="Get Weather Details"
+                    android:visibility="gone"
+                    android:textColor="#FFFFFF" />
+
+                <TextView
+                    android:id="@+id/weatherTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:text=""
+                    android:textColor="@color/md_white_1000"
+                    android:textSize="16sp" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
