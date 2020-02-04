@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,9 +34,16 @@ import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class StudentListActivity extends AppCompatActivity
 {
@@ -112,6 +120,14 @@ public class StudentListActivity extends AppCompatActivity
         if (id == R.id.logout)
         {
             Toast.makeText(this, "Logout Clicked", Toast.LENGTH_LONG).show();
+            return true;
+        }
+
+        if (id == R.id.web)
+        {
+            Intent intent = new Intent(StudentListActivity.this,
+                    WebViewActivity.class);
+            startActivity(intent);
             return true;
         }
         return super.onOptionsItemSelected(item);

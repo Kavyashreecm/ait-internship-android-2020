@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,7 +34,14 @@ import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 
+import java.io.IOException;
 import java.util.Locale;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class LocationActivity extends AppCompatActivity
 {
@@ -75,12 +83,36 @@ public class LocationActivity extends AppCompatActivity
                                             @Override
                                             public void onClick(View view)
                                             {
-                                                Uri uri = Uri.parse("http://maps.google.com/maps?q=" +
-                                                        latLng.latitude + "," + latLng.longitude);
+                                                OkHttpClient client = new OkHttpClient();
 
-                                                Intent mapIntent = new Intent(Intent.ACTION_VIEW, uri);
-                                                mapIntent.setPackage("com.google.android.apps.maps");
-                                                startActivity(mapIntent);
+                                                Request request = new Request.Builder()
+                                                        .url("http://api.openweathermap.org/data/2.5/weather?lat=" + latLng.latitude +
+                                                                "&lon=" + latLng.longitude +
+                                                                "&units=metric&APPID" +
+                                                                "=5a6bd43795ec1f1e5e9e2362dec72e9c")
+                                                        .build();
+
+                                                client.newCall(request).enqueue(new Callback()
+                                                {
+                                                    @Override
+                                                    public void onFailure(Call call, IOException e)
+                                                    {
+                                                        e.printStackTrace();
+                                                    }
+
+                                                    @Override
+                                                    public void onResponse(Call call, final Response response) throws IOException
+                                                    {
+                                                        if (!response.isSuccessful())
+                                                        {
+                                                            throw new IOException("Unexpected code " + response);
+                                                        }
+                                                        else
+                                                        {
+                                                            Log.d("nk", response.body().string());
+                                                        }
+                                                    }
+                                                });
                                             }
                                         });
 

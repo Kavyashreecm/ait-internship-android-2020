@@ -189,6 +189,8 @@ public class StudentRegistrationActivity extends AppCompatActivity
             ImageView iv = findViewById(R.id.ivRegLogo);
             iv.setImageBitmap(bitmap);
         }
+
+
     }
 
 

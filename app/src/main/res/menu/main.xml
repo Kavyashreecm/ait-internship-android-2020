@@ -34,4 +34,9 @@
         android:title="Log Out"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/web"
+        android:title="WebView"
+        app:showAsAction="never" />
+
 </menu>
