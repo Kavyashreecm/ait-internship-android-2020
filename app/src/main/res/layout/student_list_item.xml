@@ -14,6 +14,15 @@
         app:cardBackgroundColor="@color/md_blue_700"
         app:cardCornerRadius="5dp">
 
+        <ImageView
+            android:id="@+id/deleteIV"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="right|bottom"
+            android:layout_margin="10dp"
+            android:hapticFeedbackEnabled="true"
+            android:src="@drawable/ic_action_delete" />
+
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

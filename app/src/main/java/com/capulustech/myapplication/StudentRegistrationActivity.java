@@ -47,8 +47,16 @@ import java.util.Locale;
 public class StudentRegistrationActivity extends AppCompatActivity
 {
     Student student;
-    TextToSpeech textToSpeech;
-    boolean isSpeaking;
+
+    EditText nameET;
+    EditText usnET;
+    EditText mobileNumberET;
+    Spinner sectionSpn;
+    Spinner branchSpn;
+    TextView locationTV;
+    Button registerBtn;
+    ImageView profileIV;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -56,68 +64,19 @@ public class StudentRegistrationActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_registration);
 
-        final EditText nameET = findViewById(R.id.nameET);
-        final EditText usnET = findViewById(R.id.usnET);
-        final EditText mobileNumberET = findViewById(R.id.mobileET);
-        final Spinner sectionSpn = findViewById(R.id.sectionSpn);
-        final Spinner branchSpn = findViewById(R.id.branchSpn);
-        final TextView locationTV = findViewById(R.id.locationTV);
-        Button registerBtn = findViewById(R.id.registerBtn);
-        final Button shareBtn = findViewById(R.id.shareBtn);
-        final Button speakBtn = findViewById(R.id.speakBtn);
-        final Button videoBtn = findViewById(R.id.captureVideoBtn);
-        final ImageView profileIV = findViewById(R.id.ivRegLogo);
+        nameET = findViewById(R.id.nameET);
+        usnET = findViewById(R.id.usnET);
+        mobileNumberET = findViewById(R.id.mobileET);
+        sectionSpn = findViewById(R.id.sectionSpn);
+        branchSpn = findViewById(R.id.branchSpn);
+        locationTV = findViewById(R.id.locationTV);
+        registerBtn = findViewById(R.id.registerBtn);
+        profileIV = findViewById(R.id.ivRegLogo);
 
 
-        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.demo);
+/*        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.demo);
         profileIV.startAnimation(animation);
-        shareBtn.startAnimation(animation);
-        speakBtn.startAnimation(animation);
-        videoBtn.startAnimation(animation);
-        registerBtn.startAnimation(animation);
-
-
-        videoBtn.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                Intent videoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-                videoIntent.putExtra("android.intent.extras.CAMERA_FACING", 1);
-                startActivityForResult(videoIntent, 1111);
-            }
-        });
-
-        speakBtn.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                String name = nameET.getText().toString();
-                String branch = branchSpn.getSelectedItem().toString();
-                String usn = usnET.getText().toString();
-                String mobileNumber = mobileNumberET.getText().toString();
-                //String section = sectionET.getText().toString();
-                String section = sectionSpn.getSelectedItem().toString();
-
-                student = new Student();
-                student.name = name;
-                student.branch = branch;
-                student.usn = usn;
-                student.mobileNumber = mobileNumber;
-                student.section = section;
-
-                String message = "Name: " + student.name + "\n"
-                        + "USN: " + student.usn + "\n"
-                        + "Branch: " + student.branch + "\n"
-                        + "Section: " + student.section + "\n"
-                        + "Mobile Number: " + student.mobileNumber;
-
-                speak(message);
-
-
-            }
-        });
+        registerBtn.startAnimation(animation);*/
 
         profileIV.setOnClickListener(new View.OnClickListener()
         {
@@ -158,26 +117,7 @@ public class StudentRegistrationActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                String name = nameET.getText().toString();
-                String branch = branchSpn.getSelectedItem().toString();
-                String usn = usnET.getText().toString();
-                String mobileNumber = mobileNumberET.getText().toString();
-                //String section = sectionET.getText().toString();
-                String section = sectionSpn.getSelectedItem().toString();
-
-                student = new Student();
-                student.name = name;
-                student.branch = branch;
-                student.usn = usn;
-                student.mobileNumber = mobileNumber;
-                student.section = section;
-
-                Student.addStudent(StudentRegistrationActivity.this, student);
-
-                Toast.makeText(StudentRegistrationActivity.this,
-                        "Student Added to Database", Toast.LENGTH_SHORT).show();
-
-
+                confirm();
             }
         });
 
@@ -201,7 +141,8 @@ public class StudentRegistrationActivity extends AppCompatActivity
                                         "Location : " + latLng.latitude + "," + latLng.longitude,
                                         Toast.LENGTH_LONG).show();*/
 
-                                locationTV.setText("Location : " + latLng.latitude + "," + latLng.longitude);
+                                locationTV.setText("Location : " + latLng.latitude + ","
+                                        + latLng.longitude);
 
 
                                 locationTV.setOnClickListener(new View.OnClickListener()
@@ -215,43 +156,6 @@ public class StudentRegistrationActivity extends AppCompatActivity
                                         Intent mapIntent = new Intent(Intent.ACTION_VIEW, uri);
                                         mapIntent.setPackage("com.google.android.apps.maps");
                                         startActivity(mapIntent);
-                                    }
-                                });
-
-
-                                shareBtn.setOnClickListener(new View.OnClickListener()
-                                {
-                                    @Override
-                                    public void onClick(View view)
-                                    {
-
-                                        String name = nameET.getText().toString();
-                                        String branch = branchSpn.getSelectedItem().toString();
-                                        String usn = usnET.getText().toString();
-                                        String mobileNumber = mobileNumberET.getText().toString();
-                                        //String section = sectionET.getText().toString();
-                                        String section = sectionSpn.getSelectedItem().toString();
-
-                                        student = new Student();
-                                        student.name = name;
-                                        student.branch = branch;
-                                        student.usn = usn;
-                                        student.mobileNumber = mobileNumber;
-                                        student.section = section;
-
-                                        String message = "Name: " + student.name + "\n"
-                                                + "USN: " + student.usn + "\n"
-                                                + "Branch: " + student.branch + "\n"
-                                                + "Section: " + student.section + "\n"
-                                                + "Mobile Number: " + student.mobileNumber + "\n"
-                                                + "This is my Location: \n" + "http://maps.google.com/maps?q="
-                                                + latLng.latitude + "," + latLng.longitude;
-
-                                        Intent sendIntent = new Intent();
-                                        sendIntent.setAction(Intent.ACTION_SEND);
-                                        sendIntent.putExtra(Intent.EXTRA_TEXT, message);
-                                        sendIntent.setType("text/plain");
-                                        startActivity(sendIntent);
                                     }
                                 });
                             }
@@ -273,42 +177,6 @@ public class StudentRegistrationActivity extends AppCompatActivity
                 })
                 .check();
 
-
-        final ImageView photoIV = findViewById(R.id.ivRegLogo);
-        photoIV.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                Dexter.withActivity(StudentRegistrationActivity.this)
-                        .withPermission(Manifest.permission.CAMERA)
-                        .withListener(new PermissionListener()
-                        {
-                            @Override
-                            public void onPermissionGranted(PermissionGrantedResponse response)
-                            {
-                                Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-                                intent.putExtra("android.intent.extras.CAMERA_FACING", 1);
-                                startActivityForResult(intent, 6789);
-                            }
-
-                            @Override
-                            public void onPermissionDenied(PermissionDeniedResponse response)
-                            {
-
-                            }
-
-                            @Override
-                            public void onPermissionRationaleShouldBeShown(PermissionRequest permission,
-                                                                           PermissionToken token)
-                            {
-
-                            }
-                        })
-                        .check();
-            }
-        });
-
     }
 
     @Override
@@ -321,120 +189,69 @@ public class StudentRegistrationActivity extends AppCompatActivity
             ImageView iv = findViewById(R.id.ivRegLogo);
             iv.setImageBitmap(bitmap);
         }
-
-        if (requestCode == 1111 && resultCode == RESULT_OK)
-        {
-            Uri videoUri = data.getData();
-            VideoView videoView = findViewById(R.id.videoView);
-            videoView.setVideoURI(videoUri);
-            videoView.start();
-        }
-    }
-
-    public void speak(final String message)
-    {
-
-        textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener()
-        {
-            @Override
-            public void onInit(int status)
-            {
-                if (status != TextToSpeech.ERROR)
-                {
-                    textToSpeech.setLanguage(Locale.US);
-                    textToSpeech.setSpeechRate(1f);
-                    textToSpeech.setPitch(1f);
-                    textToSpeech.speak(message, TextToSpeech.QUEUE_FLUSH, null, null);
-
-                }
-            }
-        });
-
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        // This comment suppresses the Android Studio warning about simplifying
-        // the return statements.
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.settings)
-        {
-            Toast.makeText(this, "Settings Clicked", Toast.LENGTH_LONG).show();
-            return true;
-        }
-
-//        if (id == R.id.alert)
-//        {
-//            showAlertDialog();
-//            return true;
-//        }
-//
-//        if (id == R.id.datePicker)
-//        {
-//            showDatePicker();
-//            return true;
-//        }
-        if (id == R.id.studentList)
-        {
-            Intent intent = new Intent(this, StudentListActivity.class);
-            startActivity(intent);
-            return true;
-        }
-//
-        if (id == R.id.logout)
-        {
-            Toast.makeText(this, "Logout Clicked", Toast.LENGTH_LONG).show();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
 
-    public void showAlertDialog()
+    public void confirm()
     {
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
-        alertBuilder.setTitle("Title");
-        alertBuilder.setMessage("This is a sample Message");
-        alertBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener()
+        alertBuilder.setTitle("Save?");
+        alertBuilder.setMessage("Do you want to save this Student Information?");
+        alertBuilder.setPositiveButton("Save", new DialogInterface.OnClickListener()
         {
             @Override
             public void onClick(DialogInterface dialogInterface, int i)
             {
-                Toast.makeText(StudentRegistrationActivity.this, "OK Clicked", Toast.LENGTH_SHORT).show();
+                String name = nameET.getText().toString();
+                String usn = usnET.getText().toString();
+                String branch = branchSpn.getSelectedItem().toString();
+                String section = sectionSpn.getSelectedItem().toString();
+                String mobileNumber = mobileNumberET.getText().toString();
+
+                student = new Student();
+                student.name = name;
+                student.branch = branch;
+                student.usn = usn;
+                student.mobileNumber = mobileNumber;
+                student.section = section;
+
+                Student.addStudent(StudentRegistrationActivity.this, student);
+
+                Toast.makeText(StudentRegistrationActivity.this,
+                        "Student added to Database", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(StudentRegistrationActivity.this,
+                        StudentListActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 
-        alertBuilder.setNegativeButton("No", new DialogInterface.OnClickListener()
+        alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener()
         {
             @Override
             public void onClick(DialogInterface dialogInterface, int i)
             {
-                Toast.makeText(StudentRegistrationActivity.this, "Cancel Clicked", Toast.LENGTH_SHORT).show();
+
             }
         });
 
         alertBuilder.create().show();
     }
 
-
-    public void showDatePicker()
+    @Override
+    protected void onResume()
     {
-        DatePickerFragment dateFragment = new DatePickerFragment();
-        dateFragment.show(getSupportFragmentManager(), "datePicker");
+        super.onResume();
+        /*Toast.makeText(this, "Student Registration Activity Resumed",
+                Toast.LENGTH_SHORT).show();*/
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+        /*Toast.makeText(this, "destroy called",
+                Toast.LENGTH_SHORT).show();*/
     }
 }

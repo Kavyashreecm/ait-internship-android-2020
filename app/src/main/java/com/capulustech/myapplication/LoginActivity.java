@@ -38,7 +38,8 @@ public class LoginActivity extends AppCompatActivity
                 if (username.equalsIgnoreCase("admin")
                         && password.equalsIgnoreCase("admin"))
                 {
-                    Toast.makeText(LoginActivity.this, "Login Successful",
+                    Toast.makeText(LoginActivity.this,
+                            "Login Successful",
                             Toast.LENGTH_LONG).show();
 
                     Intent intent = new Intent(LoginActivity.this,
@@ -47,7 +48,8 @@ public class LoginActivity extends AppCompatActivity
                 }
                 else
                 {
-                    Toast.makeText(LoginActivity.this, "Login Failed",
+                    Toast.makeText(LoginActivity.this,
+                            "Login Failed",
                             Toast.LENGTH_LONG).show();
                 }
             }

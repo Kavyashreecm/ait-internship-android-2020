@@ -2,25 +2,31 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
     <item
-        android:id="@+id/settings"
-        android:icon="@drawable/ic_action_settings"
+        android:id="@+id/add"
+        android:icon="@drawable/ic_action_add"
         android:title="Settings"
         app:showAsAction="always" />
 
-    <!--<item
-        android:id="@+id/alert"
-        android:title="Show Dialog"
+    <item
+        android:id="@+id/video"
+        android:title="Video Capture"
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/datePicker"
-        android:title="Date Picker"
-        app:showAsAction="never" />-->
+        android:id="@+id/share"
+        android:title="Share Intent"
+        app:showAsAction="never" />
 
     <item
-        android:id="@+id/studentList"
-        android:title="Student List"
+        android:id="@+id/location"
+        android:title="Location and Map"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/tts"
+        android:title="Text to Speech"
         app:showAsAction="never" />
 
     <item

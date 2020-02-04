@@ -77,5 +77,21 @@ public class Student implements Serializable
         }
     }
 
+    public static void deleteStudent(Context context, Student student)
+    {
+        try
+        {
+            dataBaseHelper = OpenHelperManager.getHelper(context, DataBaseHelper.class);
+            Dao<Student, Long> studentDao = dataBaseHelper.getStudentDao();
+            studentDao.delete(student);
+            OpenHelperManager.releaseHelper();
+        }
+        catch (SQLException e)
+        {
+            Toast.makeText(context, "SQLException", Toast.LENGTH_SHORT).show();
+            Log.e("nk", Log.getStackTraceString(e));
+        }
+    }
+
 
 }

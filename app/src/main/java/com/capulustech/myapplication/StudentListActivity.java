@@ -60,7 +60,7 @@ public class StudentListActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu)
     {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.student_list, menu);
+        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
@@ -74,6 +74,44 @@ public class StudentListActivity extends AppCompatActivity
             Intent intent = new Intent(StudentListActivity.this,
                     StudentRegistrationActivity.class);
             startActivity(intent);
+            return true;
+        }
+
+        if (id == R.id.share)
+        {
+            Intent intent = new Intent(StudentListActivity.this,
+                    ShareActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
+        if (id == R.id.video)
+        {
+            Intent intent = new Intent(StudentListActivity.this,
+                    VideoCaptureActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
+        if (id == R.id.tts)
+        {
+            Intent intent = new Intent(StudentListActivity.this,
+                    TextToSpeechActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
+        if (id == R.id.location)
+        {
+            Intent intent = new Intent(StudentListActivity.this,
+                    LocationActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
+        if (id == R.id.logout)
+        {
+            Toast.makeText(this, "Logout Clicked", Toast.LENGTH_LONG).show();
             return true;
         }
         return super.onOptionsItemSelected(item);

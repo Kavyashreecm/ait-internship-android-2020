@@ -22,6 +22,22 @@
             android:label="Students List" />
 
         <activity
+            android:name=".LocationActivity"
+            android:label="Location" />
+
+        <activity
+            android:name=".ShareActivity"
+            android:label="Share" />
+
+        <activity
+            android:name=".TextToSpeechActivity"
+            android:label="Text To Speech" />
+
+        <activity
+            android:name=".VideoCaptureActivity"
+            android:label="Video Capture" />
+
+        <activity
             android:name=".LoginActivity"
             android:label="Login">
             <intent-filter>

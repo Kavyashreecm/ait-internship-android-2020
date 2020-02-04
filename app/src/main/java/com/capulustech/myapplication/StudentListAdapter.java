@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +33,7 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
     {
         TextView studentNameTV, usnTV, branchTV, sectionTV, mobileTV;
         CardView cardView;
+        ImageView deleteIV;
 
         public StudentViewHolder(@NonNull View itemView)
         {
@@ -42,6 +44,7 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
             mobileTV = itemView.findViewById(R.id.mobileTV);
             usnTV = itemView.findViewById(R.id.usnTV);
             cardView = itemView.findViewById(R.id.cardView);
+            deleteIV = itemView.findViewById(R.id.deleteIV);
         }
     }
 
@@ -70,7 +73,19 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
             @Override
             public void onClick(View view)
             {
-                Toast.makeText(context, student.name, Toast.LENGTH_LONG).show();
+                Toast.makeText(context, student.name + " clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        holder.deleteIV.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Student.deleteStudent(context, student);
+                Toast.makeText(context, student.name + " deleted", Toast.LENGTH_LONG).show();
+
+                ((StudentListActivity) context).recreate();
             }
         });
     }
