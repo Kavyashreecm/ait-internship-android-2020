@@ -102,6 +102,7 @@ public class AadhaarActivity extends AppCompatActivity
             else
             {
                 Log.d("nk", result.getContents());
+                Log.d("nk", result.getContents());
 
                 Toast.makeText(this, "" + result.getContents(), Toast.LENGTH_SHORT).show();
 
