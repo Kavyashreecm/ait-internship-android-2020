@@ -30,13 +30,24 @@
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/logout"
-        android:title="Log Out"
+        android:id="@+id/web"
+        android:title="WebView"
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/web"
-        android:title="WebView"
+        android:id="@+id/progress"
+        android:title="Progress Dialog"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/aadhaar"
+        android:title="Aadhaar Scanner"
+        app:showAsAction="never" />
+
+
+    <item
+        android:id="@+id/speechRecognition"
+        android:title="Speech Recognition"
         app:showAsAction="never" />
 
 </menu>

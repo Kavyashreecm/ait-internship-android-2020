@@ -37,4 +37,7 @@ dependencies {
     implementation 'com.j256.ormlite:ormlite-android:4.48'
 
     implementation("com.squareup.okhttp3:okhttp:4.3.1")
+
+    implementation 'com.journeyapps:zxing-android-embedded:3.4.0'
+    implementation 'com.github.smart-fun:XmlToJson:1.4.5'
 }

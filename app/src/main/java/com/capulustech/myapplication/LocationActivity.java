@@ -166,11 +166,13 @@ public class LocationActivity extends AppCompatActivity
                     {
                         JSONObject jsonObject = new JSONObject(responseString);
                         JSONArray jsonArray = jsonObject.getJSONArray("weather");
-                        String weatherType = jsonArray.getJSONObject(0).getString("description");
+                        String weatherType = jsonArray.getJSONObject(0).getString("main");
                         String temperature = jsonObject.getJSONObject("main").getString("temp");
                         String city = jsonObject.getString("name");
 
                         weatherTV.setText(city + " - " + weatherType.toUpperCase() + " - " + temperature + "C");
+
+
 
                     }
                     catch (JSONException e)

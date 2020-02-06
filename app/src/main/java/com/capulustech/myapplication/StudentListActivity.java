@@ -1,6 +1,7 @@
 package com.capulustech.myapplication;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -27,6 +28,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -34,11 +37,15 @@ import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import fr.arnaudguyon.xmltojsonlib.XmlToJson;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -93,6 +100,16 @@ public class StudentListActivity extends AppCompatActivity
             return true;
         }
 
+        if (id == R.id.progress)
+        {
+            ProgressDialog progressDialog = new ProgressDialog(this);
+            progressDialog.setMessage("Please Wait...");
+            progressDialog.setIndeterminate(true);
+            progressDialog.show();
+            progressDialog.dismiss();
+            return true;
+        }
+
         if (id == R.id.video)
         {
             Intent intent = new Intent(StudentListActivity.this,
@@ -117,12 +134,6 @@ public class StudentListActivity extends AppCompatActivity
             return true;
         }
 
-        if (id == R.id.logout)
-        {
-            Toast.makeText(this, "Logout Clicked", Toast.LENGTH_LONG).show();
-            return true;
-        }
-
         if (id == R.id.web)
         {
             Intent intent = new Intent(StudentListActivity.this,
@@ -130,6 +141,23 @@ public class StudentListActivity extends AppCompatActivity
             startActivity(intent);
             return true;
         }
+
+        if (id == R.id.aadhaar)
+        {
+            Intent intent = new Intent(StudentListActivity.this,
+                    AadhaarActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
+        if (id == R.id.speechRecognition)
+        {
+            Intent intent = new Intent(StudentListActivity.this,
+                    SpeechRecognitionActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 }

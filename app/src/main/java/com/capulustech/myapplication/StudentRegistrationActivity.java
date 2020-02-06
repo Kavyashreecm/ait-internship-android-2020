@@ -247,6 +247,10 @@ public class StudentRegistrationActivity extends AppCompatActivity
         super.onResume();
         /*Toast.makeText(this, "Student Registration Activity Resumed",
                 Toast.LENGTH_SHORT).show();*/
+
+
+        profileIV.setImageDrawable(getDrawable(R.drawable.app_logo));
+
     }
 
     @Override
