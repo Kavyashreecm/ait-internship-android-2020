@@ -18,12 +18,20 @@
             android:layout_gravity="center_horizontal"
             android:src="@drawable/aadhaar_card" />
 
+        <TextView
+            android:id="@+id/aadhaarDetailsTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/md_white_1000"
+            android:textSize="24sp" />
+
         <TableLayout
             android:id="@+id/detailsTable"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:stretchColumns="0,1">
+            android:stretchColumns="0,1"
+            android:visibility="gone">
 
             <TableRow
                 android:layout_width="match_parent"
@@ -487,7 +495,7 @@
             android:layout_marginRight="20dp"
             android:layout_marginBottom="10dp"
             android:background="@color/md_blue_700"
-            android:text="SCAN AADHAAR"
+            android:text="SCAN"
             android:textColor="@color/md_white_1000" />
     </LinearLayout>
 </ScrollView>

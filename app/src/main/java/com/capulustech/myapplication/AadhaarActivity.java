@@ -42,8 +42,10 @@ public class AadhaarActivity extends AppCompatActivity
     private TextView subdistTV;
     private TextView stateTV;
     private TextView pcTV;
+    private TextView aadhaarDetailsTV;
     private TextToSpeech textToSpeech;
     TableLayout detailsTable;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -70,6 +72,7 @@ public class AadhaarActivity extends AppCompatActivity
         pcTV = findViewById(R.id.pcTV);
         detailsTable = findViewById(R.id.detailsTable);
         detailsTable.setVisibility(View.GONE);
+        aadhaarDetailsTV = findViewById(R.id.aadhaarDetailsTV);
 
 
         Button scanBtn = findViewById(R.id.scanBtn);
@@ -100,10 +103,17 @@ public class AadhaarActivity extends AppCompatActivity
             {
                 Log.d("nk", result.getContents());
 
-                String aadhaarXML = result.getContents();
+                Toast.makeText(this, "" + result.getContents(), Toast.LENGTH_SHORT).show();
+
+                aadhaarDetailsTV.setText(result.getContents());
+
+              /*  String aadhaarXML = result.getContents();
                 XmlToJson xmlToJson = new XmlToJson.Builder(aadhaarXML).build();
 
                 JSONObject jsonObject = xmlToJson.toJson();
+
+                Log.d("Aadhaar Data", jsonObject.toString());
+                detailsTable.setVisibility(View.VISIBLE);
 
                 try
                 {
@@ -140,15 +150,15 @@ public class AadhaarActivity extends AppCompatActivity
                     distTV.setText(dist);
                     subdistTV.setText(subdist);
                     stateTV.setText(state);
-                    pcTV.setText(pc);
+                    pcTV.setText(pc);*//*
 
-                    detailsTable.setVisibility(View.VISIBLE);
+
 
                 }
                 catch (JSONException e)
                 {
                     e.printStackTrace();
-                }
+                }*/
 //                Log.d("nk", jsonObject.toString());
 //                Toast.makeText(this, "" + result.getContents(), Toast.LENGTH_SHORT).show();
             }

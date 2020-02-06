@@ -39,6 +39,6 @@ public class WebViewActivity extends AppCompatActivity
 
         WebView webView = findViewById(R.id.webview);
         webView.setWebViewClient(new WebViewClient());
-        webView.loadUrl("http://www.aitckm.in");
+        webView.loadUrl("https://www.instagram.com/explore/tags/aitinternship2020");
     }
 }
